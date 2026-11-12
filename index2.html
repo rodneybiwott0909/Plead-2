@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>A little something for you 💕</title>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg1:#ffe4ec;--bg2:#ffc6d9;--card:#ffffffe0;--ink:#4a1d2e;--soft:#8a4a60;--pink:#e83e72;--pink2:#ff7aa2;--chip:#fff;--line:#f6b8cc;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg1:#2a0f1c;--bg2:#431529;--card:#4a1d2ee8;--ink:#ffe9f0;--soft:#f3b6c9;--pink:#ff5c8f;--pink2:#ff8fb1;--chip:#5a2338;--line:#7a3350}}
+:root[data-theme="dark"]{--bg1:#2a0f1c;--bg2:#431529;--card:#4a1d2ee8;--ink:#ffe9f0;--soft:#f3b6c9;--pink:#ff5c8f;--pink2:#ff8fb1;--chip:#5a2338;--line:#7a3350}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;font-family:'Poppins',system-ui,-apple-system,Segoe UI,sans-serif;color:var(--ink);background:linear-gradient(160deg,var(--bg1),var(--bg2));display:flex;align-items:center;justify-content:center;padding:20px;overflow-x:hidden}
+.hearts{position:fixed;inset:0;pointer-events:none;overflow:hidden}
+.hearts span{position:absolute;bottom:-40px;opacity:.5;animation:rise linear infinite}
+@keyframes rise{to{transform:translateY(-110vh) rotate(25deg);opacity:0}}
+.wrap{position:relative;z-index:1;width:100%;max-width:420px}
+.dots{display:flex;gap:7px;justify-content:center;margin-bottom:14px}
+.dots i{width:9px;height:9px;border-radius:50%;background:var(--line);transition:.3s}
+.dots i.on{background:var(--pink);width:26px;border-radius:9px}
+.card{background:var(--card);backdrop-filter:blur(8px);border:1px solid var(--line);border-radius:28px;padding:34px 24px;text-align:center;box-shadow:0 20px 50px #e83e7233;min-height:420px;display:flex;flex-direction:column;justify-content:center;align-items:center}
+.scene{display:none;width:100%;flex-direction:column;align-items:center}
+.scene.on{display:flex;animation:in .6s ease}
+@keyframes in{from{opacity:0;transform:translateY(18px) scale(.97)}to{opacity:1;transform:none}}
+.big{font-size:64px;display:inline-block;animation:beat 1.2s infinite}
+@keyframes beat{0%,100%{transform:scale(1)}20%{transform:scale(1.18)}40%{transform:scale(1)}60%{transform:scale(1.12)}}
+h1{font-family:'Dancing Script',cursive,serif;font-size:40px;margin:6px 0 12px;color:var(--pink);line-height:1.1}
+p{margin:0 0 14px;line-height:1.65;color:var(--soft);font-size:15.5px}
+.line{opacity:0;transform:translateY(10px);transition:.7s}
+.line.show{opacity:1;transform:none}
+.when{display:inline-block;background:var(--chip);border:1px solid var(--line);border-radius:999px;padding:8px 16px;font-weight:600;color:var(--ink);margin:4px 0 16px;font-size:14px}
+button{font:inherit;cursor:pointer;border:0;border-radius:999px;padding:14px 26px;font-weight:600;font-size:16px;transition:transform .15s}
+button:active{transform:scale(.95)}
+.go{background:linear-gradient(135deg,var(--pink),var(--pink2));color:#fff;box-shadow:0 8px 20px #e83e7255;margin-top:10px}
+.no{background:var(--chip);color:var(--soft);border:1px solid var(--line)}
+.btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;min-height:64px;align-items:center}
+.hide{display:none!important}
+.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:4px 0 14px}
+.chip{background:var(--chip);color:var(--ink);border:1px solid var(--line);padding:10px 16px;font-size:14px}
+.chip.on{background:var(--pink);color:#fff;border-color:var(--pink)}
+.reason{background:var(--chip);border:1px solid var(--line);border-radius:20px;padding:20px;width:100%;margin-bottom:14px;min-height:130px;display:flex;flex-direction:column;justify-content:center}
+.reason b{font-size:34px;display:block;margin-bottom:6px}
+.reason span{color:var(--ink);font-size:16px;line-height:1.5}
+.count{font-family:'Dancing Script',cursive,serif;font-size:90px;color:var(--pink);line-height:1;margin:10px 0}
+.sign{font-family:'Dancing Script',cursive,serif;font-size:26px;color:var(--pink);margin-top:10px}
+.fine{font-size:12.5px;margin:12px 0 0;opacity:.85}
+</style>
+</head>
+<body>
+<div class="hearts" id="hearts" aria-hidden="true"></div>
+<div class="wrap">
+  <div class="dots" id="dots"></div>
+  <main class="card">
+
+    <section class="scene" id="s0">
+      <div class="big">💌</div>
+      <h1>You’ve got a letter</h1>
+      <p>Someone special wrote this just for you.<br>Tap to open it.</p>
+      <button class="go" data-next>Open 💗</button>
+    </section>
+
+    <section class="scene" id="s1">
+      <h1>Hey, beautiful…</h1>
+      <p class="line">I’ve been thinking about you all day.</p>
+      <p class="line">Everything is better when you’re around.</p>
+      <p class="line">And today I just really, really miss you.</p>
+      <button class="go line" data-next>Keep going →</button>
+    </section>
+
+    <section class="scene" id="sorry">
+      <div class="big">🥹</div>
+      <h1>I’m so sorry</h1>
+      <p>I know what I put you through hurt you, and you deserved so much better.</p>
+      <p>I’m not asking you to forget it. I’m asking for a chance to make it right.</p>
+      <p><b>Can you forgive me?</b></p>
+      <div class="btns" id="sorryb">
+        <button class="go" id="sorry1" style="margin:0">I forgive you 💗</button>
+        <button class="no" id="sorry2">I need more time</button>
+      </div>
+      <p class="hide" id="sorryr"></p>
+      <button class="go hide" id="sorryn" data-next>Continue →</button>
+    </section>
+
+    <section class="scene" id="s2">
+      <h1>Why I need you</h1>
+      <div class="reason" id="reason"></div>
+      <p class="fine" id="rcount"></p>
+      <button class="go" id="rnext">Next 💕</button>
+    </section>
+
+    <section class="scene" id="love">
+      <div class="big">💞</div>
+      <h1>One honest question</h1>
+      <p>No pressure, just the truth from your heart.</p>
+      <p><b>Do you still love me?</b></p>
+      <div class="btns" id="loveb">
+        <button class="go" id="love1" style="margin:0">Yes, I do 💕</button>
+        <button class="no" id="love2">I’m not sure yet</button>
+      </div>
+      <p class="hide" id="lover"></p>
+      <button class="go hide" id="loven" data-next>Continue →</button>
+    </section>
+
+    <section class="scene" id="s3">
+      <h1>One tiny question…</h1>
+      <p>It’s coming in</p>
+      <div class="count" id="count">3</div>
+      <p class="fine">Take a deep breath 🥰</p>
+    </section>
+
+    <section class="scene" id="s4">
+      <div class="big">🥺</div>
+      <h1 style="font-size:34px">Can you come see me?</h1>
+      <div class="when" id="when">Tomorrow</div>
+      <div class="btns">
+        <button class="go" id="yes" style="margin:0">Yes, I’m coming 💕</button>
+        <button class="no" id="no">Let me think…</button>
+      </div>
+      <p class="fine" id="taunt"></p>
+    </section>
+
+    <section class="scene" id="s5">
+      <div class="big">🥰</div>
+      <h1>You just made my day!</h1>
+      <p>When works best for you?</p>
+      <div class="chips" id="times"></div>
+      <p>And what should we do?</p>
+      <div class="chips" id="plans"></div>
+      <button class="go" data-next>Done ✨</button>
+    </section>
+
+    <section class="scene" id="s6">
+      <div class="big">❤️</div>
+      <h1>It’s a date!</h1>
+      <p id="summary"></p>
+      <button class="go" id="send">Tell Rodney 💌</button>
+      <p class="fine" id="note"></p>
+      <div class="sign">I love you — Rodney</div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+(function(){
+  var $=function(i){return document.getElementById(i)};
+  var scenes=[].slice.call(document.querySelectorAll('.scene')),cur=-1,timers=[];
+  var dots=$('dots');scenes.forEach(function(){dots.appendChild(document.createElement('i'))});
+
+  var d=new Date();d.setDate(d.getDate()+1);
+  var label=d.toLocaleDateString(undefined,{weekday:'long',month:'long',day:'numeric'});
+  $('when').textContent='📅 '+label;
+
+  var hs=$('hearts'),em=['💗','💕','💖','🌸','✨'];
+  for(var i=0;i<16;i++){var s=document.createElement('span');s.textContent=em[i%5];
+    s.style.left=Math.random()*100+'%';s.style.fontSize=(14+Math.random()*22)+'px';
+    s.style.animationDuration=(8+Math.random()*10)+'s';s.style.animationDelay=(-Math.random()*14)+'s';hs.appendChild(s);}
+  function burst(n){for(var i=0;i<n;i++){(function(i){setTimeout(function(){
+    var s=document.createElement('span');s.textContent=em[i%5];
+    s.style.left=Math.random()*100+'%';s.style.fontSize=(20+Math.random()*24)+'px';s.style.opacity=.9;
+    s.style.animationDuration=(3+Math.random()*3)+'s';hs.appendChild(s);
+    setTimeout(function(){s.remove()},6500);},i*60);})(i);}}
+
+  function go(n){
+    timers.forEach(clearTimeout);timers=[];
+    scenes.forEach(function(x,i){x.classList.toggle('on',i===n)});
+    [].forEach.call(dots.children,function(x,i){x.classList.toggle('on',i===n)});
+    cur=n;window.scrollTo(0,0);
+    if(n===1){[].forEach.call(scenes[1].querySelectorAll('.line'),function(l,i){
+      l.classList.remove('show');timers.push(setTimeout(function(){l.classList.add('show')},700+i*1500));});}
+    if(n===3){ri=0;showReason();}
+    if(n===5){var c=3;$('count').textContent=c;
+      var iv=setInterval(function(){c--;if(c>0){$('count').textContent=c}else{clearInterval(iv);go(6)}},1000);
+      timers.push({});timers.push(setTimeout(function(){},0));scenes[5]._iv=iv;}
+    if(n===7||n===8)burst(30);
+    if(n===8)summary();
+  }
+  document.addEventListener('click',function(e){
+    var t=e.target.closest('[data-next]');if(t)go(cur+1);
+  });
+
+  var reasons=[['😊','Your smile makes my whole day brighter.'],['🎧','Your voice is my favourite sound in the world.'],['🤗','Your hugs feel like home.'],['🌍','You make even the hard days feel lighter.']],ri=0;
+  function showReason(){var r=reasons[ri];$('reason').innerHTML='<b>'+r[0]+'</b><span>'+r[1]+'</span>';
+    $('rcount').textContent=(ri+1)+' of '+reasons.length;
+    $('rnext').textContent=ri===reasons.length-1?'One more thing 💗':'Next 💕';}
+  $('rnext').onclick=function(){if(ri<reasons.length-1){ri++;showReason()}else{go(4)}};
+
+  var no=$('no'),taunt=$('taunt'),tries=0;
+  var lines=['Nice try 😏','That button is shy…','Are you sure? 🥺','Pretty please? 💕','It’s running away from you!','Okay, the “No” button gave up. 😂'];
+  function dodge(e){e.preventDefault();tries++;taunt.textContent=lines[Math.min(tries-1,5)];
+    if(tries>=6){no.classList.add('hide');return}
+    no.style.position='fixed';no.style.zIndex=5;
+    no.style.left=Math.max(10,Math.random()*(innerWidth-no.offsetWidth-20))+'px';
+    no.style.top=Math.max(10,Math.random()*(innerHeight-no.offsetHeight-20))+'px';}
+  no.addEventListener('mouseenter',dodge);no.addEventListener('touchstart',dodge,{passive:false});no.addEventListener('click',dodge);
+  $('yes').onclick=function(){notify('She said YES! 💕 She is coming '+label);go(7)};
+
+  var FORM_URL='https://formspree.io/f/xvkaojjj';/* paste your Formspree link here, e.g. https://formspree.io/f/abcdwxyz */
+  function notify(text){if(!FORM_URL)return;try{fetch(FORM_URL,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({message:text})}).catch(function(){})}catch(e){}}
+  function ans(id,which,reply,note,party){$(id+which).onclick=function(){notify(note);$(id+'b').classList.add('hide');var r=$(id+'r');r.textContent=reply;r.classList.remove('hide');$(id+'n').classList.remove('hide');if(party)burst(25)}}
+  ans('sorry','1','Thank you. That means the world to me. I promise to do better. 💗','She FORGIVES you 💗',true);
+  ans('sorry','2','I understand, and I’ll wait for as long as you need. Thank you for being honest. 🤍','She said she needs more time to forgive you 🤍',false);
+  ans('love','1','I love you too, more than words can say. 💕','She says she STILL LOVES YOU 💕',true);
+  ans('love','2','That’s okay. I’ll keep showing you, and I’ll be patient. 🤍','She said she is not sure yet if she still loves you 🤍',false);
+  var pickT='',pickP='';
+  function chipset(id,arr,set){arr.forEach(function(t){var b=document.createElement('button');b.className='chip';b.textContent=t;
+    b.onclick=function(){set(t);[].forEach.call($(id).children,function(c){c.classList.remove('on')});b.classList.add('on')};$(id).appendChild(b)})}
+  chipset('times',['Morning ☀️','Afternoon 🌤️','Evening 🌆','Night 🌙'],function(t){pickT=t});
+  chipset('plans',['Cuddles 🤗','Dinner 🍽️','Movie 🎬','A walk 🌳'],function(t){pickP=t});
+  function strip(t){return t.replace(/\s*[^\w\s]+$/,'')}
+  function msg(){return 'Yes, I’m coming to see you '+label+(pickT?' in the '+strip(pickT).toLowerCase():'')+(pickP?' — let’s do: '+strip(pickP).toLowerCase():'')+'! 💕 Can’t wait.'}
+  function summary(){$('summary').textContent='See you '+label+(pickT?', '+strip(pickT).toLowerCase():'')+(pickP?' — '+strip(pickP).toLowerCase():'')+'. I can’t wait.'}
+  $('send').onclick=function(){notify(msg());
+    if(navigator.share){navigator.share({text:msg()}).catch(function(){})}
+    else{location.href='sms:?&body='+encodeURIComponent(msg())}
+    $('note').textContent='Opening your messages so you can send it to him 💌';};
+
+  go(0);
+})();
+</script>
+</body>
+</html>
